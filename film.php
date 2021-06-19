@@ -24,6 +24,7 @@ $index = 1;
             <th>REPLACEMENT COST</th>
             <th>RATING</th>
             <th>SPECIAL FETURES</th>
+            <th>ACTOR IN FILM</th>
         </tr>
     </thead>
     <title>FILM</title>
@@ -46,6 +47,10 @@ foreach ($array as $info):
             <td  align="center"><?=$info['replacement_cost'];?></td>
             <td align="center"><?=$info['rating'];?></td>
             <td align="center"><?=($info['special_features']);?></td>
+            <td align="center">
+            <a href="aif.php?film_id=<?=$info['film_id'];?>">ACTORS</a>
+                </form>
+            </td>
         </tr>
     <?php
 endforeach;
