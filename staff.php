@@ -1,6 +1,6 @@
 <?php
 $con = mysqli_connect("localhost", 'root', '', 'sakila');
-$rs = mysqli_query($con, "SELECT `staff_id`, `first_name`, `last_name`, address.`address`, `picture`, `email`, `store_id`, `active`, `username`, `password` FROM `staff` left join address on address.address_id = staff.address_id");
+$rs = mysqli_query($con, "SELECT `staff_id`, `first_name`, `last_name`, address.`address`, `picture`, `email`, `store_id`, `active`, `username`, `password` FROM `staff` left join address on address.address_id = staff.address_id where first_name='$_GET[staff]' or last_name='$_GET[staff]'");
 //print_r($rs);
 $array = mysqli_fetch_all($rs, MYSQLI_ASSOC);
 //print_r($array[0]);
@@ -31,10 +31,16 @@ foreach ($array as $info):
             <td align="center"><?=($info['staff_id']);?></td>
             <td  align="center"><?=$info['first_name'];?></td>
             <td align="center"><?=$info['last_name'];?></td>
-            <td align="center"><?=($info['address']);?></td>
+            <td align="center">
+            <a href="address.php?address=<?=$info['address'];?>"><?=$info['address'];?></a>
+                </form>
+            </td>
             <td  align="center">NO IMAGE</td>
             <td align="center"><?=$info['email'];?></td>
-            <td align="center"><?=($info['store_id']);?></td>
+            <td align="center">
+            <a href="store.php?store_id=<?=$info['store_id'];?>"><?=$info['store_id'];?></a>
+                </form>
+            </td>
             <td align="center"><?=($info['active']);?></td>
             <td  align="center"><?=$info['username'];?></td>
             <td align="center"><?=$info['password'];?></td>

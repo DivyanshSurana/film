@@ -1,7 +1,7 @@
 <?php
 $con = mysqli_connect("localhost", 'root', '', 'sakila');
 $rs = mysqli_query($con, "SELECT `payment_id`, customer.`first_name` as customer_name,customer.
-`last_name` as cutomer_last_name, staff.`first_name`  as staff_name, staff.`last_name`  
+`last_name` as customer_last_name, staff.`first_name`  as staff_name, staff.`last_name`  
 as staff_last_name , rental.`rental_id`, `amount`, `payment_date` FROM `payment` 
 left join customer on customer.customer_id = payment.customer_id left join staff on 
 staff.staff_id = payment.staff_id left join rental on rental.rental_id = payment.rental_id");
@@ -29,10 +29,22 @@ $index = 1;
 foreach ($array as $info):
 ?>
         <tr>
-            <td align="center"><?=($info['customer_name']);?></td>
-            <td  align="center"><?=$info['cutomer_last_name'];?></td>
-            <td align="center"><?=$info['staff_name'];?></td>
-            <td align="center"><?=$info['staff_last_name'];?></td>
+        <td align="center">
+            <a href="cutomer.php?customer=<?=$info['customer_name'];?>"><?=$info['customer_name'];?></a>
+                </form>
+            </td>
+            <td align="center">
+            <a href="cutomer.php?customer=<?=$info['customer_last_name'];?>"><?=$info['customer_last_name'];?></a>
+                </form>
+            </td>
+            <td align="center">
+            <a href="staff.php?staff=<?=$info['staff_name'];?>"><?=$info['staff_name'];?></a>
+                </form>
+            </td>
+            <td align="center">
+            <a href="staff.php?staff=<?=$info['staff_last_name'];?>"><?=$info['staff_last_name'];?></a>
+                </form>
+            </td>
             <td align="center"><?=($info['rental_id']);?></td>
             <td  align="center"><?=$info['amount'];?></td>
             <td align="center"><?=$info['payment_date'];?></td>

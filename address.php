@@ -1,6 +1,6 @@
 <?php
 $con = mysqli_connect("localhost", 'root', '', 'sakila');
-$rs = mysqli_query($con, "SELECT `address_id`, `address`, `address2`, `district`, city.city as city_id, `postal_code`, `phone` FROM `address` left join city on address.city_id = city.city_id");
+$rs = mysqli_query($con, "SELECT `address_id`, `address`, `address2`, `district`, city.city as city_id, `postal_code`, `phone` FROM `address` left join city on address.city_id = city.city_id where address='$_GET[address]'");
 //print_r($rs);
 $array = mysqli_fetch_all($rs, MYSQLI_ASSOC);
 //print_r($array[0]);
@@ -14,8 +14,7 @@ $index = 1;
             <th>ADDRESS ID</th>
             <th>ADDRESS</th>
             <th>ADDRESS 2</th>
-            <th>DISTRICT</th>
-            <th>CITY NAME</th>
+          
             <th>POSTAL CODE</th>
             <th>PHONE</th>
         </tr>
@@ -26,10 +25,12 @@ foreach ($array as $info):
 ?>
         <tr>
             <td align="center"><?=($info['address_id']);?></td>
-            <td  align="center"><?=$info['address'];?></td>
+            <td align="center">
+            <a href="address2.php?address=<?=$info['address'];?>"><?=$info['address'];?></a>
+                </form>
+            </td>
             <td align="center"><?=$info['address2'];?></td>
-            <td align="center"><?=($info['district']);?></td>
-            <td  align="center"><?=$info['city_id'];?></td>
+          
             <td align="center"><?=$info['postal_code'];?></td>
             <td align="center"><?=$info['phone'];?></td>
         </tr>

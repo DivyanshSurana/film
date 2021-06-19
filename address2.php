@@ -1,6 +1,6 @@
 <?php
 $con = mysqli_connect("localhost", 'root', '', 'sakila');
-$rs = mysqli_query($con, "SELECT actor.`first_name`,actor.`last_name`, film.`title` FROM `film_actor` left join actor on actor.actor_id = film_actor.film_id left join film on film.film_id = film_actor.actor_id where actor.actor_id=$_GET[actor_id]");
+$rs = mysqli_query($con, "SELECT `address_id`, `address`, `address2`, `district`, city.city as city_id, `postal_code`, `phone`,country.country FROM `address` left join city on address.city_id = city.city_id left join country on country.country_id = country.country_id where address='$_GET[address]'");
 //print_r($rs);
 $array = mysqli_fetch_all($rs, MYSQLI_ASSOC);
 //print_r($array[0]);
@@ -11,9 +11,11 @@ $index = 1;
     <thead>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <tr>
-            <th>FIRST NAME</th>
-            <th>LAST NAME</th>
-            <th>FILM</th>
+            <th>ADDRESS ID</th>
+            <th>ADDRESS</th>
+            <th>DISTRICT</th>
+            <th>CITY</th>
+         
         </tr>
     </thead>
     <title>FILM</title>
@@ -21,12 +23,14 @@ $index = 1;
 foreach ($array as $info):
 ?>
         <tr>
-            <td align="center"><?=($info['first_name']);?></td>
-            <td  align="center"><?=$info['last_name'];?></td>
+            <td align="center"><?=($info['address_id']);?></td>
+            <td align="center"><?=($info['address']);?></td>
+            <td align="center"><?=($info['district']);?></td>
             <td align="center">
-            <a href="film.php?film=<?=$info['title'];?>"><?=$info['title'];?></a>
+            <a href="city.php?city=<?=$info['city_id'];?>"><?=$info['city_id'];?></a>
                 </form>
             </td>
+         <?php   exit;?>
         </tr>
     <?php
 endforeach;

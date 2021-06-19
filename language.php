@@ -1,6 +1,6 @@
 <?php
 $con = mysqli_connect("localhost", 'root', '', 'sakila');
-$rs = mysqli_query($con, "select *  from language ");
+$rs = mysqli_query($con, "select *  from language where name='$_GET[name]'");
 //print_r($rs);
 $array = mysqli_fetch_all($rs, MYSQLI_ASSOC);
 //print_r($array[0]);

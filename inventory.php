@@ -4,7 +4,7 @@ $rs = mysqli_query($con, "SELECT `inventory_id`, `film`.`title` as film_id, addr
 
 left join film  on film.film_id = inventory.film_id
 left join store on store.store_id = inventory.store_id
-left join address on address.address_id = store.address_id");
+left join address on address.address_id = store.address_id where inventory_id=$_GET[inventory_id]");
 //print_r($rs);
 $array = mysqli_fetch_all($rs, MYSQLI_ASSOC);
 //print_r($array[0]);
@@ -27,8 +27,11 @@ foreach ($array as $info):
 ?>
         <tr>
             <td align="center"><?=($info['inventory_id']);?></td>
-            <td  align="center"><?=$info['film_id'];?></td>
-            <td align="center"><?=$info['store_id'];?></td>
+            <td align="center">   <a href="film.php?film=<?=$info['film_id'];?>"><?=$info['film_id'];?></a></td>
+            <td align="center">
+            <a href="address.php?address=<?=$info['store_id'];?>"><?=$info['store_id'];?></a>
+                </form>
+            </td>
             <td align="center"><?=$info['last_update'];?></td>
 
         </tr>

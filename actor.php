@@ -15,7 +15,6 @@ $index = 1;
             <th>FIRST NAME</th>
             <th>LAST NAME</th>
             <th>LAST UPDATED</th>
-            <th>FILM ACTOR</th>
         </tr>
     </thead>
     <title>FILM</title>
@@ -24,13 +23,15 @@ foreach ($array as $info):
 ?>
         <tr>
             <td align="center"><?=($info['actor_id']);?></td>
-            <td  align="center"><?=$info['first_name'];?></td>
-            <td align="center"><?=$info['last_name'];?></td>
-            <td align="center"><?=$info['last_update'];?></td>
             <td align="center">
-            <a href="film_actor.php?actor_id=<?=$info['actor_id'];?>">FILM ACTOR</a>
+            <a href="film_actor.php?actor_id=<?=$info['actor_id'];?>"><?=$info['first_name'];?></a>
                 </form>
             </td>
+            <td align="center">
+            <a href="film_actor.php?actor_id=<?=$info['actor_id'];?>"><?=$info['last_name'];?></a>
+                </form>
+            </td>
+            <td align="center"><?=$info['last_update'];?></td>
         </tr>
     <?php
 endforeach;

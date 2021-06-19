@@ -1,6 +1,6 @@
 <?php
 $con = mysqli_connect("localhost", 'root', '', 'sakila');
-$rs = mysqli_query($con, "SELECT city.`city_id`, city.`city`, country.`country` FROM city left join country on country.country_id = city.country_id");
+$rs = mysqli_query($con, "SELECT city.`city_id`, city.`city`, country.`country` FROM city left join country on country.country_id = city.country_id where city='$_GET[city]'");
 //print_r($rs);
 $array = mysqli_fetch_all($rs, MYSQLI_ASSOC);
 //print_r($array[0]);
@@ -23,7 +23,10 @@ foreach ($array as $info):
         <tr>
             <td align="center"><?=($info['city_id']);?></td>
             <td  align="center"><?=$info['city'];?></td>
-            <td align="center"><?=$info['country'];?></td>
+            <td align="center">
+            <a href="country.php?country=<?=$info['country'];?>"><?=$info['country'];?></a>
+                </form>
+            </td>
         </tr>
     <?php
 endforeach;

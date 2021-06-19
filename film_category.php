@@ -1,6 +1,6 @@
 <?php
 $con = mysqli_connect("localhost", 'root', '', 'sakila');
-$rs = mysqli_query($con, "SELECT film.`title`, category.`name` FROM `film_category` left join film on film.film_id = film_category.film_id left join category on category.category_id = film_category.category_id");
+$rs = mysqli_query($con, "SELECT film.`title`, category.`name` FROM `film_category` left join film on film.film_id = film_category.film_id left join category on category.category_id = film_category.category_id where name='$_GET[category_id]'");
 //print_r($rs);
 $array = mysqli_fetch_all($rs, MYSQLI_ASSOC);
 //print_r($array[0]);
@@ -20,7 +20,10 @@ $index = 1;
 foreach ($array as $info):
 ?>
         <tr>
-            <td align="center"><?=($info['title']);?></td>
+        <td align="center">
+            <a href="film.php?film=<?=$info['title'];?>"><?=$info['title'];?></a>
+                </form>
+            </td>
             <td  align="center"><?=$info['name'];?></td>
         </tr>
     <?php

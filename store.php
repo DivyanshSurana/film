@@ -1,6 +1,6 @@
 <?php
 $con = mysqli_connect("localhost", 'root', '', 'sakila');
-$rs = mysqli_query($con, "SELECT store.`store_id`, staff.`first_name`,staff.`last_name`, address.`address`FROM `store` left join staff on staff.staff_id = store.manager_staff_id left join address on address.address_id = store.address_id");
+$rs = mysqli_query($con, "SELECT store.`store_id`, staff.`first_name`,staff.`last_name`, address.`address`FROM `store` left join staff on staff.staff_id = store.manager_staff_id left join address on address.address_id = store.address_id where store.store_id=$_GET[store_id]");
 //print_r($rs);
 $array = mysqli_fetch_all($rs, MYSQLI_ASSOC);
 //print_r($array[0]);
@@ -24,9 +24,18 @@ foreach ($array as $info):
 ?>
         <tr>
             <td align="center"><?=($info['store_id']);?></td>
-            <td  align="center"><?=$info['first_name'];?></td>
-            <td align="center"><?=$info['last_name'];?></td>
-            <td align="center"><?=($info['address']);?></td>
+            <td align="center">
+            <a href="staff.php?staff=<?=$info['first_name'];?>"><?=$info['first_name'];?></a>
+                </form>
+            </td>
+            <td align="center">
+            <a href="staff.php?staff=<?=$info['last_name'];?>"><?=$info['last_name'];?></a>
+                </form>
+            </td>
+            <td align="center">
+            <a href="address.php?address=<?=$info['address'];?>"><?=$info['address'];?></a>
+                </form>
+            </td>
         </tr>
     <?php
 endforeach;

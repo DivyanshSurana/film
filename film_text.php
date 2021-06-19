@@ -22,7 +22,7 @@ foreach ($array as $info):
 ?>
         <tr>
             <td align="center"><?=($info['film_id']);?></td>
-            <td  align="center"><?=$info['title'];?></td>
+            <td align="center">   <a href="film.php?film=<?=$info['title'];?>"><?=$info['title'];?></a></td>
             <td align="center"><?=$info['description'];?></td>
         </tr>
     <?php

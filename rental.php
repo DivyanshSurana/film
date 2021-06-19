@@ -28,11 +28,27 @@ foreach ($array as $info):
         <tr>
             <td align="center"><?=($info['rental_id']);?></td>
             <td  align="center"><?=$info['rental_date'];?></td>
-            <td align="center"><?=$info['inventory_id'];?></td>
-            <td align="center"><?=($info['first_name']);?></td>
-            <td  align="center"><?=$info['last_name'];?></td>
-            <td align="center"><?=$info['staff_name'];?></td>
-            <td align="center"><?=($info['staff_last_name']);?></td>
+            <td align="center">
+            <a href="inventory.php?inventory_id=<?=$info['inventory_id'];?>"><?=$info['inventory_id'];?></a>
+                </form>
+            </td>
+           
+            <td align="center">
+            <a href="cutomer.php?customer=<?=$info['first_name'];?>"><?=$info['first_name'];?></a>
+                </form>
+            </td>
+            <td align="center">
+            <a href="cutomer.php?customer=<?=$info['last_name'];?>"><?=$info['last_name'];?></a>
+                </form>
+            </td>
+            <td align="center">
+            <a href="staff.php?staff=<?=$info['staff_name'];?>"><?=$info['staff_name'];?></a>
+                </form>
+            </td>
+            <td align="center">
+            <a href="staff.php?staff=<?=$info['staff_last_name'];?>"><?=$info['staff_last_name'];?></a>
+                </form>
+            </td>
             <td  align="center"><?=$info['return_date'];?></td>
                 </form>
             </td>

@@ -22,7 +22,10 @@ foreach ($array as $info):
 ?>
         <tr>
             <td align="center"><?=($info['category_id']);?></td>
-            <td  align="center"><?=$info['name'];?></td>
+          <td align="center">
+            <a href="film_category.php?category_id=<?=$info['name'];?>"><?=$info['name'];?></a>
+                </form>
+            </td>
             <td align="center"><?=$info['last_update'];?></td>
         </tr>
     <?php

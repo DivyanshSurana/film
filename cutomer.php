@@ -1,6 +1,6 @@
 <?php
 $con = mysqli_connect("localhost", 'root', '', 'sakila');
-$rs = mysqli_query($con, "SELECT `customer_id`, store.`store_id`, `first_name`, `last_name`, `email`, address.`address` as ad, `active`, `create_date` FROM `customer` left join store on store.store_id = customer.store_id left join address on address.address_id = customer.address_id");
+$rs = mysqli_query($con, "SELECT `customer_id`, store.`store_id`, `first_name`, `last_name`, `email`, address.`address` as ad, `active`, `create_date` FROM `customer` left join store on store.store_id = customer.store_id left join address on address.address_id = customer.address_id where first_name='$_GET[customer]' or last_name='$_GET[customer]'");
 //print_r($rs);
 $array = mysqli_fetch_all($rs, MYSQLI_ASSOC);
 //print_r($array[0]);
@@ -16,7 +16,7 @@ $index = 1;
             <th>FIRST NAME</th>
             <th>LAST NAME </th>
             <th>EMAIL</th>
-            <th>ADDRESS ID</th>
+            <th>ADDRESS</th>
             <th>ACTIVE</th>
             <th>CREATED DATE</th>
         </tr>
@@ -27,11 +27,17 @@ foreach ($array as $info):
 ?>
         <tr>
             <td align="center"><?=($info['customer_id']);?></td>
-            <td  align="center"><?=$info['store_id'];?></td>
+            <td align="center">
+            <a href="store.php?store_id=<?=$info['store_id'];?>"><?=$info['store_id'];?></a>
+                </form>
+            </td>
             <td align="center"><?=$info['first_name'];?></td>
             <td align="center"><?=($info['last_name']);?></td>
             <td  align="center"><?=$info['email'];?></td>
-            <td align="center"><?=$info['ad'];?></td>
+            <td align="center">
+            <a href="address.php?address=<?=$info['ad'];?>"><?=$info['ad'];?></a>
+                </form>
+            </td>
             <td align="center"><?=$info['active'];?></td>
             <td align="center"><?=$info['create_date'];?></td>
     
